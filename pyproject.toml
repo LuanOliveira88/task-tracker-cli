@@ -10,6 +10,8 @@ python = "^3.12"
 typer = "^0.12.5"
 tinydb = "^4.8.0"
 
+[tool.poetry.scripts]
+tasks = "task_tracker.cli:app"
 
 [tool.poetry.group.dev.dependencies]
 taskipy = "^1.13.0"
@@ -22,22 +24,23 @@ line-length = 79
 
 [tool.ruff.lint]
 preview =  true
-select = ['I', 'F', 'E', 'W', 'PL', 'PT']
+select = ["I", "F", "E", "W", "PL", "PT"]
 
 [tool.ruff.format]
 preview = true
-quote-style = 'single'
+quote-style = "single"
 
 [tool.pytest.ini_options]
-pythonpath = '.'
-addopts = '-p no:warnings'
+pythonpath = "."
+addopts = "-p no:warnings"
 
 [tool.taskipy.tasks]
-lint = 'ruff check . && ruff check . --diff'
-format = 'ruff check . --fix && ruff format'
-pre_test = 'task lint'
-test = 'pytest -s -x --cov=task_tracker -vv'
-post_test = 'coverage html'
+lint = "ruff check . && ruff check . --diff"
+format = "ruff check . --fix && ruff format"
+pre_test = "task lint"
+test = "pytest -s -x --cov=task_tracker -vv"
+post_test = "coverage html"
+run = "poetry run tasks"
 
 [build-system]
 requires = ["poetry-core"]
